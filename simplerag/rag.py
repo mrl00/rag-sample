@@ -3,13 +3,13 @@ import numpy as np
 from openai import OpenAI
 from dotenv import load_dotenv
 
-MODEL = "google/gemma-4-31b-it:free"
+MODEL = os.getenv("AI_MODEL", "google/gemma-4-31b-it:free")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL")
 
 load_dotenv()
 
-client = OpenAI(
-    api_key=os.getenv("OPENAI_API_KEY"), base_url=os.getenv("OPENAI_BASE_URL")
-)
+client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL)
 
 docs = [
     "The X product has 2 years of warranty and a 30-day money back guarantee.",
